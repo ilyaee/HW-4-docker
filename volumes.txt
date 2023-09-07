@@ -1,0 +1,60 @@
+> docker pull node:18.17.1
+18.17.1: Pulling from library/node
+a014e5e7d08c: Pull complete
+715cea74ecbb: Pull complete
+003f1109a212: Pull complete
+a56ae3b61eb9: Pull complete
+d75a90c8895c: Pull complete
+6095ade0ed48: Pull complete
+b99a1b5ca5eb: Pull complete
+796831e44468: Pull complete
+Digest: sha256:dd1d1b295171a47a67a2eafb6d6d70bf09ce1c83d74b6387d1f4da93a8d173c1
+Status: Downloaded newer image for node:18.17.1
+docker.io/library/node:18.17.1
+
+What's Next?
+  View summary of image vulnerabilities and recommendations → docker scout quickview node:18.17.1
+
+> docker run -t -d --name first_node -v /Users/kitafuka/data:/var/first/data node:18.17.1
+4e322c44d91396d48884e5585fae40225485909720fadacd39ea833e002bc955
+
+> docker run -t -d --name second_node -v /Users/kitafuka/data:/var/second/data node:18.17.1
+6ccba310cba58d06b75097f84cf1601f13f62058400c8700ec470793709e55d9
+
+> docker exec first_node touch /var/first/data/test.txt
+
+> docker exec second_node ls /var/second/data
+test.txt
+test2.txt
+
+
+> docker exec second_node cat /var/second/data/test2.txt
+content123%
+
+
+> docker stop first_node second_node
+first_node
+second_node
+
+
+> docker rm first_node second_node
+first_node
+second_node
+
+
+> docker images
+REPOSITORY   TAG       IMAGE ID       CREATED       SIZE
+node         18.17.1   ad27b5c3226e   3 weeks ago   1.09GB
+
+> docker rmi ad27
+Untagged: node:18.17.1
+Untagged: node@sha256:dd1d1b295171a47a67a2eafb6d6d70bf09ce1c83d74b6387d1f4da93a8d173c1
+Deleted: sha256:ad27b5c3226e90acdedb9f8304cecbdfec8a0aaa6f76fe59ffc75801b3e8da5c
+Deleted: sha256:696b13d6c8f58f16a4e55eb771b440bcbb59965b74015816bc4f89f0147408f0
+Deleted: sha256:8778d3361d40806e279403f2e655d9c0de4a8b82b8959bc846e527db4381daac
+Deleted: sha256:b6ff2a25646ad3f16db6a7179c44744d22d4f7bab6430f5724891243f552fe67
+Deleted: sha256:83e7a81ccddbeb56ca9647625c36e38e8aae8234a52584b74a3d407c491090ed
+Deleted: sha256:17f92fe249341952694ddec386dabc54c0765b6ef744e53b4a578c0d4149af11
+Deleted: sha256:c1aaa703f6cd41fe8a9c08d69ff109ea7224ba654f52c94a28e6dcaa1c93ff76
+Deleted: sha256:4246cefbac53fc8084ff0e0e3ad38b0438598dc9eb986b6d80e39ec2b439a25d
+Deleted: sha256:7806df21f4c455687a53386a856fd9d6164a221c71ce420b7676ed17a6ee4e73

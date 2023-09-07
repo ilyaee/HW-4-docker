@@ -1,0 +1,90 @@
+kitafuka@MacBook-Air-Ila ~ % docker pull busybox
+Using default tag: latest
+latest: Pulling from library/busybox
+8a0af25e8c2e: Pull complete
+Digest: sha256:3fbc632167424a6d997e74f52b878d7cc478225cffac6bc977eedfe51c7f4e79
+Status: Downloaded newer image for busybox:latest
+docker.io/library/busybox:latest
+
+What's Next?
+  View summary of image vulnerabilities and recommendations → docker scout quickview busybox
+
+
+
+kitafuka@MacBook-Air-Ila ~ % docker run --name pinger busybox ping -c 7 netology.ru
+PING netology.ru (104.22.41.171): 56 data bytes
+64 bytes from 104.22.41.171: seq=0 ttl=62 time=28.506 ms
+64 bytes from 104.22.41.171: seq=1 ttl=62 time=36.705 ms
+64 bytes from 104.22.41.171: seq=2 ttl=62 time=36.496 ms
+64 bytes from 104.22.41.171: seq=3 ttl=62 time=36.501 ms
+64 bytes from 104.22.41.171: seq=4 ttl=62 time=27.413 ms
+64 bytes from 104.22.41.171: seq=5 ttl=62 time=28.058 ms
+64 bytes from 104.22.41.171: seq=6 ttl=62 time=28.407 ms
+
+--- netology.ru ping statistics ---
+7 packets transmitted, 7 packets received, 0% packet loss
+round-trip min/avg/max = 27.413/31.726/36.705 ms
+
+
+kitafuka@MacBook-Air-Ila ~ % docker ps -a
+CONTAINER ID   IMAGE     COMMAND                  CREATED              STATUS                      PORTS     NAMES
+f38118e2ea27   busybox   "ping -c 7 netology.…"   About a minute ago   Exited (0) 49 seconds ago             pinger
+
+kitafuka@MacBook-Air-Ila ~ % docker logs pinger
+PING netology.ru (104.22.41.171): 56 data bytes
+64 bytes from 104.22.41.171: seq=0 ttl=62 time=28.506 ms
+64 bytes from 104.22.41.171: seq=1 ttl=62 time=36.705 ms
+64 bytes from 104.22.41.171: seq=2 ttl=62 time=36.496 ms
+64 bytes from 104.22.41.171: seq=3 ttl=62 time=36.501 ms
+64 bytes from 104.22.41.171: seq=4 ttl=62 time=27.413 ms
+64 bytes from 104.22.41.171: seq=5 ttl=62 time=28.058 ms
+64 bytes from 104.22.41.171: seq=6 ttl=62 time=28.407 ms
+
+--- netology.ru ping statistics ---
+7 packets transmitted, 7 packets received, 0% packet loss
+round-trip min/avg/max = 27.413/31.726/36.705 ms
+
+kitafuka@MacBook-Air-Ila ~ % docker start pinger
+pinger
+
+
+kitafuka@MacBook-Air-Ila ~ % docker ps -a
+CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS                      PORTS     NAMES
+f38118e2ea27   busybox   "ping -c 7 netology.…"   12 minutes ago   Exited (0) 30 seconds ago             pinger
+
+
+kitafuka@MacBook-Air-Ila ~ % docker logs pinger
+PING netology.ru (104.22.41.171): 56 data bytes
+64 bytes from 104.22.41.171: seq=0 ttl=62 time=28.506 ms
+64 bytes from 104.22.41.171: seq=1 ttl=62 time=36.705 ms
+64 bytes from 104.22.41.171: seq=2 ttl=62 time=36.496 ms
+64 bytes from 104.22.41.171: seq=3 ttl=62 time=36.501 ms
+64 bytes from 104.22.41.171: seq=4 ttl=62 time=27.413 ms
+64 bytes from 104.22.41.171: seq=5 ttl=62 time=28.058 ms
+64 bytes from 104.22.41.171: seq=6 ttl=62 time=28.407 ms
+
+--- netology.ru ping statistics ---
+7 packets transmitted, 7 packets received, 0% packet loss
+round-trip min/avg/max = 27.413/31.726/36.705 ms
+PING netology.ru (104.22.40.171): 56 data bytes
+64 bytes from 104.22.40.171: seq=0 ttl=62 time=35.445 ms
+64 bytes from 104.22.40.171: seq=1 ttl=62 time=49.706 ms
+64 bytes from 104.22.40.171: seq=2 ttl=62 time=29.805 ms
+64 bytes from 104.22.40.171: seq=3 ttl=62 time=38.580 ms
+64 bytes from 104.22.40.171: seq=4 ttl=62 time=36.254 ms
+64 bytes from 104.22.40.171: seq=5 ttl=62 time=37.041 ms
+64 bytes from 104.22.40.171: seq=6 ttl=62 time=28.248 ms
+
+--- netology.ru ping statistics ---
+7 packets transmitted, 7 packets received, 0% packet loss
+round-trip min/avg/max = 28.248/36.439/49.706 ms
+
+kitafuka@MacBook-Air-Ila ~ % docker rm pinger
+pinger
+
+
+kitafuka@MacBook-Air-Ila ~ % docker rmi busybox
+Untagged: busybox:latest
+Untagged: busybox@sha256:3fbc632167424a6d997e74f52b878d7cc478225cffac6bc977eedfe51c7f4e79
+Deleted: sha256:fc9db2894f4e4b8c296b8c9dab7e18a6e78de700d21bc0cfaf5c78484226db9c
+Deleted: sha256:3694737149b11ec4d2c9f15ad24788e81955cd1c7f2c6f555baf1e4a3615bd26
